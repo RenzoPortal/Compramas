@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Compramas.Models.Product>
+
+@{
+    ViewData["Title"] = "Shop Our Product Collection";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="color: #8C3623;">Categoria: @ViewBag.Category</h1>
+<br />
+<a href="javascript:history.go(-1);" class="btn btn-info"><< Back to List</a>
+
+<section>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-lg-3 mb-3">
+                <div class="card col-md-4 my-3 mx-auto p-0 h-100" style="width: 16rem;">
+                    <div class="card-body text-center">
+                        <img src="~/img/products/@item.Photo" alt="Product Image" width="100" class="card-img-top" />
+                        <p class="text-primary fw-bold">@item.Name</p>
+                        <h5>@String.Format("{0:c}", item.Price)</h5>
+                        <a asp-controller="Shop" asp-action="ProductDetails" asp-route-product="@item.Name" class="btn btn-warning">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

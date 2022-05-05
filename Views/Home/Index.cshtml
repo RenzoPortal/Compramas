@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Compramas.Models.Product>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="row text-center" style="width: 100%;">
+    <div class="mb-3 py-3">
+        <h1 class="display-2 text-warning">Bienvenido a compramas</h1>
+        <h2 style="color: #8C3623;">Brindamos productos de primera calidad.</h2>
+    </div>
+</div>
+<br />
+<section>
+    <h3 class="justify-content-lg-around">Productos nuevos</h3>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-lg-3 mb-3">
+                <div class="card col-md-4 my-3 mx-auto p-0 h-100" style="width: 16rem;">
+                    <div class="card-body text-center">
+                        <img src="~/img/products/@item.Photo" alt="Product Image" width="100" class="card-img-top" />
+                        <p class="text-primary fw-bold">@item.Name</p>
+                        <h5>@String.Format("{0:c}", item.Price)</h5>
+                        <a asp-controller="Shop" asp-action="ProductDetails" asp-route-product="@item.Name" class="btn btn-warning">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
